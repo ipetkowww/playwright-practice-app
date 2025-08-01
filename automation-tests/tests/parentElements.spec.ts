@@ -1,11 +1,10 @@
 import { test } from '@playwright/test';
-
-const url: string = 'http://localhost:4200/';
+import { FormLayoutsPage } from '../pages/form-layouts-page/formLayoutsPage';
 
 test.beforeEach(async ({ page }) => {
-    await page.goto(url);
-    await page.locator('a[title="Forms"]').click();
-    await page.locator('a[title="Form Layouts"]').click();
+    await page.goto('http://localhost:4200/');
+    const formLayoutsPage: FormLayoutsPage = new FormLayoutsPage(page);
+    await formLayoutsPage.open();
 })
 
 test('Locating parent elements', async ({ page }) => {
